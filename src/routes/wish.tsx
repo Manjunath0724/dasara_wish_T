@@ -8,12 +8,12 @@ export const Route = createFileRoute("/wish")({
   ssr: false,
   head: () => ({
     meta: [
-      { title: "A Golden Apta Leaf — शुभ विजयादशमी" },
+      { title: "wish to Tanii" },
       {
         name: "description",
         content: "A golden Apta leaf and a heartfelt Marathi Vijayadashami wish, made for you.",
       },
-      { property: "og:title", content: "A Golden Apta Leaf — शुभ विजयादशमी" },
+      { property: "og:title", content: "wish to Tanii" },
       {
         property: "og:description",
         content: "A golden Apta leaf and a heartfelt Marathi Vijayadashami wish, made for you.",
@@ -43,8 +43,8 @@ function WishPage() {
 
       <section className="dussehra-wish__content" aria-labelledby="wish-title">
         <p className="dussehra-kicker dussehra-wish__kicker">
-          <span className="dussehra-kicker__rule" aria-hidden="true" />
-          A little gold, for someone golden
+          <span className="dussehra-kicker__rule" aria-hidden="true" />A little gold, for someone
+          golden
         </p>
         <h1 id="wish-title" className="dussehra-wish__greeting" lang="mr">
           <span className="dussehra-wish__first">सोन्यासारख्या माणसाला माझ्याकडून...</span>
@@ -53,7 +53,9 @@ function WishPage() {
         <p className="dussehra-wish__blessing" lang="mr">
           तुझ्या आयुष्यात सुख, समृद्धी आणि आनंद सदैव नांदो.
         </p>
-        <p className="dussehra-wish__signoff">Happy Dussehra <span aria-hidden="true">•</span> शुभ विजयादशमी</p>
+        <p className="dussehra-wish__signoff">
+          Happy Dussehra <span aria-hidden="true">•</span> शुभ विजयादशमी
+        </p>
       </section>
 
       <footer className="dussehra-wish__footer">
@@ -64,7 +66,9 @@ function WishPage() {
           </Link>
         </Button>
         <span className="dussehra-footer__ornament" aria-hidden="true" />
-        <span className="dussehra-wish__footer-note" lang="mr">सोने घ्या, सोने द्या</span>
+        <span className="dussehra-wish__footer-note" lang="mr">
+          सोने घ्या, सोने द्या
+        </span>
       </footer>
     </main>
   );

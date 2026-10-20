@@ -1,24 +1,28 @@
 # Screenshot To Scene
 
-Implement exactly the screenshot and nothing else
+An interactive, two-page Dussehra greeting featuring a procedural 3D Apta leaf and a Marathi Vijayadashami wish.
 
-This project was built with [Lovable](https://lovable.dev).
+## Requirements
 
-## Build with Lovable
+- Node.js 22.12 or later (or Node.js 20.19 or later)
+- npm
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/cab7ecba-32ef-4ea3-9aff-42bf7fc21168).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Run locally
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
 npm run dev
 ```
+
+Open the local URL printed by Vite (by default, <http://localhost:5173>).
+
+## Other commands
+
+```sh
+npm test
+npm run lint
+npm run build
+npm run preview
+```
+
+The home page is `/`; the wish reveal is directly available at `/wish`.

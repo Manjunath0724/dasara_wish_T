@@ -9,12 +9,12 @@ export const Route = createFileRoute("/")({
   ssr: false,
   head: () => ({
     meta: [
-      { title: "A Golden Wish — Vijayadashami" },
+      { title: "wish to Tanii" },
       {
         name: "description",
         content: "A small, golden keepsake for someone special this Vijayadashami.",
       },
-      { property: "og:title", content: "A Golden Wish — Vijayadashami" },
+      { property: "og:title", content: "wish to Tanii" },
       {
         property: "og:description",
         content: "A small, golden keepsake for someone special this Vijayadashami.",
@@ -51,7 +51,7 @@ function IntroPage() {
   return (
     <main className={`dussehra-page dussehra-intro${leaving ? " dussehra-page--leaving" : ""}`}>
       <div className="dussehra-scene" aria-hidden="true">
-        <DussehraScene variant="intro" />
+        <DussehraScene variant="intro" isLeaving={leaving} />
       </div>
       <div className="dussehra-frame" aria-hidden="true" />
 
@@ -65,8 +65,8 @@ function IntroPage() {
 
       <section className="dussehra-intro__content" aria-labelledby="intro-title">
         <p className="dussehra-kicker">
-          <span className="dussehra-kicker__rule" aria-hidden="true" />
-          A little tradition, made just for you
+          <span className="dussehra-kicker__rule" aria-hidden="true" />A little tradition, made just
+          for you
         </p>
         <h1 id="intro-title" className="dussehra-intro__title">
           Ready for your

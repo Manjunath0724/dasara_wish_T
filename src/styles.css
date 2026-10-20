@@ -4,20 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
- */
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -45,100 +31,563 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.25rem;
+
+  /* Dussehra Royal Palette (OKLCH) */
+  --dussehra-forest: oklch(0.14 0.035 145);
+  --dussehra-forest-deep: oklch(0.09 0.025 145);
+  --dussehra-leaf: oklch(0.55 0.12 110);
+  --dussehra-leaf-light: oklch(0.82 0.16 88);
+  --dussehra-leaf-shade: oklch(0.28 0.06 135);
+  --dussehra-gold: oklch(0.84 0.17 84);
+  --dussehra-gold-light: oklch(0.93 0.14 88);
+  --dussehra-gold-dark: oklch(0.66 0.14 74);
+  --dussehra-bronze: oklch(0.5 0.08 65);
+  --dussehra-vein: oklch(0.89 0.18 86);
+  --dussehra-particle: oklch(0.92 0.18 85);
+  --dussehra-ivory: oklch(0.97 0.02 85);
+  --dussehra-ivory-dim: oklch(0.8 0.02 85);
+
+  /* Semantic mappings */
+  --background: oklch(0.09 0.025 145);
+  --foreground: oklch(0.97 0.02 85);
+  --card: oklch(0.14 0.035 145);
+  --card-foreground: oklch(0.97 0.02 85);
+  --popover: oklch(0.14 0.035 145);
+  --popover-foreground: oklch(0.97 0.02 85);
+  --primary: oklch(0.84 0.17 84);
+  --primary-foreground: oklch(0.12 0.03 145);
+  --secondary: oklch(0.2 0.04 145);
+  --secondary-foreground: oklch(0.97 0.02 85);
+  --muted: oklch(0.2 0.04 145);
+  --muted-foreground: oklch(0.75 0.03 85);
+  --accent: oklch(0.84 0.17 84);
+  --accent-foreground: oklch(0.12 0.03 145);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --border: rgba(229, 193, 88, 0.15);
+  --input: rgba(229, 193, 88, 0.2);
+  --ring: oklch(0.84 0.17 84);
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --background: oklch(0.09 0.025 145);
+  --foreground: oklch(0.97 0.02 85);
 }
 
 @layer base {
-  * {
-    border-color: var(--color-border);
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    border-color: var(--border);
   }
 
+  html,
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background-color: #070d08;
+    color: var(--dussehra-ivory);
+    font-family:
+      "Manrope",
+      system-ui,
+      -apple-system,
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+/* ==========================================================================
+   Dussehra Experience Layout & Aesthetics
+   ========================================================================== */
+
+.dussehra-page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 68% 48%,
+      rgba(229, 193, 88, 0.14) 0%,
+      rgba(229, 193, 88, 0.03) 40%,
+      transparent 65%
+    ),
+    radial-gradient(ellipse at 50% 0%, rgba(35, 60, 40, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, rgba(18, 30, 20, 0.8) 0%, transparent 70%),
+    linear-gradient(165deg, #0d1711 0%, #080f0a 45%, #050a06 100%);
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dussehra-page--leaving {
+  opacity: 0;
+  transform: scale(1.02);
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+}
+
+/* 3D Scene Layer */
+.dussehra-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.dussehra-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: auto !important;
+}
+
+.leaf-canvas-fallback {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(229, 193, 88, 0.15), transparent 70%);
+}
+
+/* Elegant Architectural Frame */
+.dussehra-frame {
+  position: absolute;
+  inset: 1.25rem;
+  border: 1px solid rgba(229, 193, 88, 0.12);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.dussehra-frame::before,
+.dussehra-frame::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: rgba(229, 193, 88, 0.35);
+  pointer-events: none;
+}
+
+.dussehra-frame::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid rgba(229, 193, 88, 0.5);
+  border-left: 2px solid rgba(229, 193, 88, 0.5);
+}
+
+.dussehra-frame::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid rgba(229, 193, 88, 0.5);
+  border-right: 2px solid rgba(229, 193, 88, 0.5);
+}
+
+@media (min-width: 768px) {
+  .dussehra-frame {
+    inset: 2rem;
+  }
+}
+
+/* Header Masthead */
+.dussehra-masthead {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.25rem 2.25rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .dussehra-masthead {
+    padding: 3rem 4rem 1rem;
+  }
+}
+
+.dussehra-masthead__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #f0ca65;
+  filter: drop-shadow(0 0 6px rgba(240, 202, 101, 0.5));
+}
+
+.dussehra-masthead span[lang="mr"] {
+  font-family: "Tiro Devanagari Marathi", "Noto Serif Devanagari", serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  color: #f7edd8;
+  font-weight: 400;
+  text-shadow: 0 1px 12px rgba(229, 193, 88, 0.2);
+}
+
+.dussehra-masthead__year {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #cbb27a;
+}
+
+/* Intro Page Content (Page 1) */
+.dussehra-intro__content {
+  position: relative;
+  z-index: 10;
+  max-width: 640px;
+  padding: 2rem 2.25rem;
+  margin: auto 0;
+  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (min-width: 768px) {
+  .dussehra-intro__content {
+    padding: 3rem 4rem;
+    margin-left: 1.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .dussehra-intro__content {
+    margin-left: 3rem;
+  }
+}
+
+.dussehra-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #e5c158;
+  margin-bottom: 1.75rem;
+}
+
+.dussehra-kicker__rule {
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, #e5c158, transparent);
+}
+
+.dussehra-intro__title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  line-height: 1.05;
+  font-weight: 400;
+  color: #fbf8f0;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.015em;
+}
+
+.dussehra-intro__title em {
+  font-style: italic;
+  font-weight: 500;
+  background: linear-gradient(135deg, #fff5d1 0%, #f3c95e 40%, #d4a530 80%, #fed570 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 20px rgba(243, 201, 94, 0.25));
+}
+
+.dussehra-intro__copy {
+  font-size: clamp(0.98rem, 1.3vw, 1.12rem);
+  line-height: 1.75;
+  color: #c9d2c9;
+  font-weight: 300;
+  max-width: 490px;
+  margin: 0 0 2.5rem;
+  letter-spacing: 0.01em;
+}
+
+/* Call to Action Button */
+.dussehra-action {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px !important;
+  background: linear-gradient(135deg, #f7d879 0%, #e0b441 50%, #b88b20 100%) !important;
+  color: #0b140d !important;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 1rem 2.25rem !important;
+  border: 1px solid rgba(255, 238, 170, 0.75) !important;
+  box-shadow:
+    0 4px 25px rgba(224, 180, 65, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2) !important;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.dussehra-action a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.dussehra-action::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 100%
+  );
+  transform: skewX(-25deg);
+  transition: left 0.75s ease;
+  pointer-events: none;
+}
+
+.dussehra-action:hover {
+  background: linear-gradient(135deg, #ffdf85 0%, #ebb947 50%, #c49624 100%) !important;
+  box-shadow:
+    0 8px 32px rgba(224, 180, 65, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+  transform: translateY(-2px);
+}
+
+.dussehra-action:hover::before {
+  left: 150%;
+}
+
+.dussehra-action__arrow {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dussehra-action:hover .dussehra-action__arrow {
+  transform: translateX(5px);
+}
+
+/* Footers */
+.dussehra-intro__footer {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 1.5rem 2.25rem 2.25rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: #a4b3a4;
+  text-align: center;
+}
+
+.dussehra-footer__ornament {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background-color: #d4af37;
+  transform: rotate(45deg);
+  opacity: 0.6;
+}
+
+/* Wish Page Content (Page 2 — The Reveal) */
+.dussehra-wish__content {
+  position: relative;
+  z-index: 10;
+  max-width: 680px;
+  padding: 2rem 2.25rem;
+  margin: auto 0 auto auto;
+}
+
+@media (min-width: 900px) {
+  .dussehra-wish__content {
+    padding: 3rem 4.5rem 3rem 2rem;
+    margin-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .dussehra-wish__content {
+    margin-right: 3.5rem;
+  }
+}
+
+.dussehra-wish__kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e5c158;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.dussehra-wish__greeting {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin: 0 0 2rem;
+  font-family: "Tiro Devanagari Marathi", "Noto Serif Devanagari", serif;
+}
+
+.dussehra-wish__first {
+  font-size: clamp(1.6rem, 3.4vw, 2.35rem);
+  line-height: 1.38;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #fbf5e8;
+  text-shadow: 0 2px 14px rgba(229, 193, 88, 0.2);
+  animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+.dussehra-wish__second {
+  font-size: clamp(2rem, 4.4vw, 3.25rem);
+  line-height: 1.24;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  background: linear-gradient(135deg, #fff7dc 0%, #fed868 35%, #e1a624 75%, #ffd666 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 28px rgba(254, 216, 104, 0.35));
+  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.85s both;
+}
+
+.dussehra-wish__blessing {
+  font-family: "Tiro Devanagari Marathi", "Noto Serif Devanagari", serif;
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  line-height: 1.65;
+  color: #e2dbce;
+  font-weight: 300;
+  margin: 0 0 2rem;
+  letter-spacing: 0.015em;
+  animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.25s both;
+}
+
+.dussehra-wish__signoff {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.08rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #d6b86a;
+  font-weight: 500;
+  margin: 0;
+  animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.55s both;
+}
+
+.dussehra-wish__signoff span {
+  color: #e5c158;
+  opacity: 0.7;
+}
+
+.dussehra-wish__footer {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2.25rem 2.25rem;
+}
+
+@media (min-width: 768px) {
+  .dussehra-wish__footer {
+    padding: 2rem 4rem 3rem;
+  }
+}
+
+.dussehra-replay {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  border-radius: 2px !important;
+  border: 1px solid rgba(229, 193, 88, 0.32) !important;
+  background: rgba(13, 23, 17, 0.75) !important;
+  backdrop-filter: blur(10px) !important;
+  color: #f7edd8 !important;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  padding: 0.65rem 1.35rem !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+.dussehra-replay a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.dussehra-replay:hover {
+  border-color: #f0cb64 !important;
+  background: rgba(229, 193, 88, 0.18) !important;
+  color: #ffdf85 !important;
+  box-shadow: 0 0 16px rgba(229, 193, 88, 0.25) !important;
+}
+
+.dussehra-wish__footer-note {
+  font-family: "Tiro Devanagari Marathi", "Noto Serif Devanagari", serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  color: #bfa87a;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
