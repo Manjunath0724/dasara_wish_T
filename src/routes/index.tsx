@@ -1,24 +1,95 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { useState, type MouseEvent } from "react";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Button } from "@/components/ui/button";
+import { DussehraScene } from "@/components/DussehraScene";
+
 export const Route = createFileRoute("/")({
-  component: Index,
+  ssr: false,
+  head: () => ({
+    meta: [
+      { title: "A Golden Wish — Vijayadashami" },
+      {
+        name: "description",
+        content: "A small, golden keepsake for someone special this Vijayadashami.",
+      },
+      { property: "og:title", content: "A Golden Wish — Vijayadashami" },
+      {
+        property: "og:description",
+        content: "A small, golden keepsake for someone special this Vijayadashami.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: IntroPage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function IntroPage() {
+  const navigate = useNavigate();
+  const [leaving, setLeaving] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(() => false);
+
+  useState(() => {
+    if (typeof window !== "undefined") {
+      setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    }
+    return null;
+  });
+
+  const unveil = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    if (reducedMotion) {
+      void navigate({ to: "/wish" });
+      return;
+    }
+    setLeaving(true);
+    window.setTimeout(() => void navigate({ to: "/wish" }), 520);
+  };
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className={`dussehra-page dussehra-intro${leaving ? " dussehra-page--leaving" : ""}`}>
+      <div className="dussehra-scene" aria-hidden="true">
+        <DussehraScene variant="intro" />
+      </div>
+      <div className="dussehra-frame" aria-hidden="true" />
+
+      <header className="dussehra-masthead">
+        <span className="dussehra-masthead__mark" aria-hidden="true">
+          <Sparkles size={16} strokeWidth={1.4} />
+        </span>
+        <span lang="mr">विजयादशमी विशेष</span>
+        <span className="dussehra-masthead__year">A FESTIVAL OF GOLD</span>
+      </header>
+
+      <section className="dussehra-intro__content" aria-labelledby="intro-title">
+        <p className="dussehra-kicker">
+          <span className="dussehra-kicker__rule" aria-hidden="true" />
+          A little tradition, made just for you
+        </p>
+        <h1 id="intro-title" className="dussehra-intro__title">
+          Ready for your
+          <br />
+          <em>Dussehra wish?</em>
+        </h1>
+        <p className="dussehra-intro__copy">
+          Some traditions are more than rituals. They&apos;re little ways of wishing happiness,
+          prosperity, and a golden year ahead.
+        </p>
+        <Button asChild size="lg" className="dussehra-action">
+          <Link to="/wish" onClick={unveil} aria-label="Unveil your Dussehra wish">
+            <span>Unveil Your Wish</span>
+            <ArrowRight className="dussehra-action__arrow" size={18} strokeWidth={1.7} />
+          </Link>
+        </Button>
+      </section>
+
+      <footer className="dussehra-intro__footer">
+        <span className="dussehra-footer__ornament" aria-hidden="true" />
+        May your year be filled with golden moments.
+        <span className="dussehra-footer__ornament" aria-hidden="true" />
+      </footer>
+    </main>
   );
 }
