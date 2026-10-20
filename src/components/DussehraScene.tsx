@@ -89,7 +89,7 @@ function buildLeafGeometry(palette: Palette) {
     const side = Math.abs(u);
     const bottom = -1.55 + 1.62 * side * side;
     const lobe = Math.exp(-Math.pow((side - 0.37) / 0.22, 2));
-    const top = 1.06 + 0.32 * lobe - 0.99 * side * side;
+    const top = 0.95 + 0.4 * lobe - 0.5 * side * side;
     const y = bottom + (top - bottom) * v;
     const x = 1.05 * u;
     const z = 0.11 * side * side + 0.035 * Math.sin(y * 2.1 + u * 1.6) + 0.045 * Math.sin(v * Math.PI);
@@ -207,7 +207,7 @@ function LeafVeins({ palette }: { palette: Palette }) {
         const endU = 0.79;
         const endSide = Math.abs(endU);
         const bottom = -1.55 + 1.62 * endSide * endSide;
-        const top = 1.06 + 0.32 * Math.exp(-Math.pow((endSide - 0.37) / 0.22, 2)) - 0.99 * endSide * endSide;
+        const top = 0.95 + 0.4 * Math.exp(-Math.pow((endSide - 0.42) / 0.22, 2)) - 0.5 * endSide * endSide;
         const startV = (y + 1.55) / (1.06 + 1.55);
         const endV = Math.min(0.93, startV + 0.12);
         const endY = bottom + (top - bottom) * endV;
@@ -307,7 +307,7 @@ function AptaLeaf({
     const delta = Math.min(rawDelta, 0.05);
     const aspect = size.width / Math.max(size.height, 1);
     const targetX = variant === "intro" ? (aspect > 1 ? 1.3 : 0.08) : aspect > 1 ? -1.65 : 0.08;
-    const targetY = variant === "intro" ? 0.02 : aspect > 1 ? -0.04 : 0.52;
+    const targetY = variant === "intro" ? (aspect > 0.8 ? 0.02 : 0.68) : aspect > 0.8 ? -0.04 : 0.7;
     const targetRotationY = (reducedMotion ? 0 : -pointer.x * 0.18) + Math.sin(clock.elapsedTime * 0.28) * (reducedMotion ? 0.012 : 0.09);
     const targetRotationX = reducedMotion ? -0.08 : -pointer.y * 0.12 - 0.08;
 
