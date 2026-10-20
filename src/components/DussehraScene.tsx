@@ -723,10 +723,12 @@ function SceneContents({
 }
 
 export function DussehraScene({ variant, isLeaving }: DussehraSceneProps) {
+  const [mounted, setMounted] = useState(false);
   const [palette, setPalette] = useState<Palette | null>(null);
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     setPalette(readPalette());
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = () => setReducedMotion(query.matches);
@@ -734,6 +736,10 @@ export function DussehraScene({ variant, isLeaving }: DussehraSceneProps) {
     query.addEventListener("change", update);
     return () => query.removeEventListener("change", update);
   }, []);
+
+  if (!mounted || !palette) {
+    return <div className="leaf-canvas-fallback" aria-hidden="true" />;
+  }
 
   return (
     <Canvas
@@ -744,14 +750,12 @@ export function DussehraScene({ variant, isLeaving }: DussehraSceneProps) {
       shadows={{ type: THREE.PCFShadowMap }}
       fallback={<div className="leaf-canvas-fallback" aria-hidden="true" />}
     >
-      {palette ? (
-        <SceneContents
-          palette={palette}
-          variant={variant}
-          isLeaving={isLeaving}
-          reducedMotion={reducedMotion}
-        />
-      ) : null}
+      <SceneContents
+        palette={palette}
+        variant={variant}
+        isLeaving={isLeaving}
+        reducedMotion={reducedMotion}
+      />
     </Canvas>
   );
 }
