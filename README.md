@@ -1,6 +1,6 @@
-# Screenshot To Scene
+# Dasara Wish to Tanii
 
-An interactive, two-page Dussehra greeting featuring a procedural 3D Apta leaf and a Marathi Vijayadashami wish.
+An elegant, interactive two-page Dussehra greeting featuring a procedural 3D golden Apta leaf with custom inscription and a heartfelt Marathi Vijayadashami wish.
 
 ## Requirements
 
